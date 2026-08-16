@@ -1,0 +1,37 @@
+{
+	debug
+}
+
+:11434 {
+	log {
+		output stdout
+		format console
+		level DEBUG
+	}
+
+	@root path /
+	respond @root "Ollama is running" 200
+
+	reverse_proxy https://ai.solyton.org {
+		header_up Authorization "{$OLLAMA_BASIC_AUTH}"
+		header_up Host ai.solyton.org
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto {scheme}
+
+		header_up -Connection
+		header_up -Upgrade
+		header_up -HTTP2-Settings
+		header_up -Http2-Settings
+		header_up -Accept-Encoding
+
+		flush_interval -1
+
+		transport http {
+			tls_server_name ai.solyton.org
+			versions 1.1
+			read_timeout 30m
+			write_timeout 30m
+			response_header_timeout 30m
+		}
+	}
+}

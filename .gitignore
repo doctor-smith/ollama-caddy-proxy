@@ -1,0 +1,37 @@
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# System files
+*.swp
+*~
+.*.swp
+.*.swo
+.*.swn
+
+# Log files
+*.log
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Docker
+.dockerignore
