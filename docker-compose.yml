@@ -1,0 +1,9 @@
+services:
+  ollama-caddy-proxy:
+    build: .
+    container_name: ollama-caddy-proxy
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    environment:
+      OLLAMA_BASIC_AUTH: "${OLLAMA_BASIC_AUTH}"
