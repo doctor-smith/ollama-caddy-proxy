@@ -30,8 +30,6 @@ temp/
 
 # Environment files
 .env
-.env.local
-.env.*.local
 
 # Docker
 .dockerignore
