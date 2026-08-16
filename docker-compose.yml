@@ -1,9 +1,17 @@
+version: '3.8'
+
 services:
   ollama-caddy-proxy:
     build: .
     container_name: ollama-caddy-proxy
     restart: unless-stopped
     ports:
-      - "127.0.0.1:11434:11434"
+      - "${PROXY_HOST}:${PROXY_PORT}:${PROXY_PORT}"
     environment:
-      OLLAMA_BASIC_AUTH: "${OLLAMA_BASIC_AUTH}"
+      OLLAMA_SERVER_URL: ${OLLAMA_SERVER_URL}
+      OLLAMA_SERVER_PORT: ${OLLAMA_SERVER_PORT}
+      OLLAMA_BASIC_AUTH: ${OLLAMA_BASIC_AUTH}
+      WARMUP_INTERVAL: ${WARMUP_INTERVAL}
+      WARMUP_MODEL: ${WARMUP_MODEL}
+    env_file:
+      - .env

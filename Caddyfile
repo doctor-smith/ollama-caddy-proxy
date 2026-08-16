@@ -12,9 +12,9 @@
 	@root path /
 	respond @root "Ollama is running" 200
 
-	reverse_proxy https://ai.solyton.org {
+	reverse_proxy {$OLLAMA_SERVER_URL} {
 		header_up Authorization "{$OLLAMA_BASIC_AUTH}"
-		header_up Host ai.solyton.org
+		header_up Host {$OLLAMA_SERVER_URL}
 		header_up X-Forwarded-Host {host}
 		header_up X-Forwarded-Proto {scheme}
 
@@ -27,7 +27,7 @@
 		flush_interval -1
 
 		transport http {
-			tls_server_name ai.solyton.org
+			tls_server_name {$OLLAMA_SERVER_URL}
 			versions 1.1
 			read_timeout 30m
 			write_timeout 30m
